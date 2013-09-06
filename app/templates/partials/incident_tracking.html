@@ -14,23 +14,74 @@
     <label>Incident Summary</label>
     <textarea name="summary" class="form-control" placeholder="what happened?"></textarea>
 </div>
-<div class="form-group">
-    <table>
-        <tr><th> </th><th>Year</th><th>Month</th><th>Day</th></tr>
-        <tr><td><label>Initial Compromise</label></td>
-            <td><input name="compromise_year" type="number" required></td>
-            <td><input name="compromise_month" type="number"></td>
-            <td><input name="compromise_day" type="number"></td></tr>
-        <tr><td><label>Discovery/Investigation</label></td>
-            <td><input name="discovery_year" type="number" required></td>
-            <td><input name="discovery_month" type="number"></td>
-            <td><input name="discovery_day" type="number"></td></tr>
-        <tr><td><label>Notication/Disclosure</label></td>
-            <td><input name="disclosure_year" type="number" required></td>
-            <td><input name="disclosure_month" type="number"></td>
-            <td><input name="disclosure_day" type="number"></td></tr>
-    </table>
+<h3>Incident Timeline</h3>
+<h4>Initial Compromise</h4>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Year</label>
+      <input name="compromise_year" type="number" class="form-control" required>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Month</label>
+      <input name="compromise_month" type="number" class="form-control">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Day</label>
+      <input name="compromise_day" type="number" class="form-control">
+    </div>
+  </div>
 </div>
+
+<h4>Discovery/Investigation</h4>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Year</label>
+      <input name="discovery_year" type="number" class="form-control" required>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Month</label>
+      <input name="discovery_month" type="number" class="form-control">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Day</label>
+      <input name="discovery_day" type="number" class="form-control">
+    </div>
+  </div>
+</div>
+
+<h4>Notication/Disclosure</h4>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Year</label>
+      <input name="disclosure_year" type="number" class="form-control" required>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Month</label>
+      <input name="disclosure_month" type="number" class="form-control">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Day</label>
+      <input name="disclosure_day" type="number" class="form-control">
+    </div>
+  </div>
+</div>
+
+<h3>Source Material</h3>
 <div id="source-material">
     <div class="row">
         <div class="col-md-8">
