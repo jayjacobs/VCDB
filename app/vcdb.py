@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+import json
 vcdb = Flask(__name__)
 
 @vcdb.route('/', methods=['GET','POST'])
@@ -27,9 +28,12 @@ def index():
 def test():
     return render_template('temp.html')
 
-@vcdb.route('/theft_physical')
+@vcdb.route('/theft_physical', methods=['GET','POST'])
 def theft_physical():
+  if request.method == "GET":
     return render_template('theft_physical.html')
+  else:
+    return json.dumps(request.form)
 
 @vcdb.route('/tampering_physical')
 def tampering_physical():
