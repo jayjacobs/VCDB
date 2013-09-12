@@ -45,8 +45,12 @@ def theft_physical():
     incident['discovery_method'] = request.form['discovery_method']
     incident['actor'] = short_actor_object(request.form)
     incident['timeline'] = short_timeline_object(request.form)
+    
+    incident = json.dumps(incident,indent=2, sort_keys=True, separators=(',', ': '))
+    incident = incident.replace(' ', '&nbsp;')
+    incident = incident.replace('\n', '<br />')
 
-    return json.dumps(incident,indent=2, sort_keys=True, separators=(',', ': '))
+    return incident
 
 @vcdb.route('/tampering_physical')
 def tampering_physical():
