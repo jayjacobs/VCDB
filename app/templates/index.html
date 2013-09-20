@@ -1,5 +1,10 @@
-{% include 'partials/header.html' %}
+{% extends 'init.html' %}
 
+{% block formnav %}
+<!-- the index page wont have the form navigation thing so we leave this blank -->
+{% endblock %}
+
+{% block content %}
 <form action='/' method="POST">
     <div class="jumbotron">
         <div class="container">
@@ -28,5 +33,4 @@
         </div>
     </div>
 </form>
-
-{% include 'partials/footer.html' %}
+{% endblock %}
