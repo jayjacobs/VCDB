@@ -1,0 +1,29 @@
+{% extends 'init.html' %}
+
+{% block form_nav_links %}
+  <li><a href="#incident-tracking">Incident Tracking</a></li>
+  <li><a href="#theft">Theft Details</a></li>
+  <li><a href="#vic-demographics">Victim Demographics</a></li>
+  <li><a href="#confidentiality">Confidentiality</a></li>
+{% endblock %}
+
+{% block content %}
+<p>This form assumes that an external actor stole a laptop computer.</p>
+<form action="short_stolen_laptop" method="POST">
+  
+  {% include 'partials/incident_tracking.html' %}
+          
+  <h2 id="theft">Theft Details</h2>
+  {% set exclude_actors = ['e_Force_majeure'] %}
+  {% include 'partials/actor_short.html' %}
+  {% include 'partials/physical_location.html' %}
+    
+  {% include 'partials/vic_demographics.html' %}
+  
+  {% include 'partials/confidentiality.html' %}
+  
+  {% include 'partials/discovery_method.html' %}
+  <input type="submit" value="Submit now" />
+</form>
+ 
+{% endblock %}
