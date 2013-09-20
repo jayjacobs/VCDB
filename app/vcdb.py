@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import json,uuid
 vcdb = Flask(__name__)
 
+
 @vcdb.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'GET':
@@ -26,7 +27,7 @@ def index():
 
 @vcdb.route('/test')
 def test():
-    return render_template('temp.html')
+    return render_template('init.html')
 
 @vcdb.route('/theft_physical', methods=['GET','POST'])
 def theft_physical():
