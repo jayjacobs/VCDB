@@ -102,6 +102,7 @@ $('#btn-add-source').click( function() {
     newCol.append(newFields);
     newRow.append(newCol);
     $("#source-material").append(newRow);
+    $('#source_count').val(source_count);
 });
 
 $('#btn-add-data-variety').click( function() {

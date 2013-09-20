@@ -25,6 +25,7 @@ def short_stolen_laptop(i):
   
   o['timeline'] = get_incident_timeline(i)
   o['plus']['timeline'] = get_notification_date(i)
+  o['reference'] = get_source_string(i)
       
   return make_pretty(o)
 
@@ -39,6 +40,16 @@ def get_notification_date(i):
   if i['discovery_month'] != '': o['month'] = int(i['discovery_month'])
   if i['discovery_day'] != '': o['year'] = int(i['discovery_year'])
   return o
+
+def get_source_string(i):
+  s = ''
+  for x in range(int(i['source_count'])):
+    fieldcount = str(x + 1)
+    s += i[fieldcount+'_source_url'] + ' (' + i[fieldcount+'_source_retrieved'] + ')'
+    if int(x + 1) < int(i['source_count']):
+      s += ';'
+  return s
+    
 
   
 def make_pretty(i):
