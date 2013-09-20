@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import json,uuid
+import json,uuid,logic
 vcdb = Flask(__name__)
 
 
@@ -9,6 +9,7 @@ def index():
         return render_template('index.html')
     else:
         options = ["theft_physical",
+                "short_stolen_laptop",
                 "tampering_physical",
                 "loss_error",
                 "publishing_error_error",
@@ -25,9 +26,12 @@ def index():
         else:
             return "invalid form selection"
 
-@vcdb.route('/test')
-def test():
-    return render_template('init.html')
+@vcdb.route('/short_stolen_laptop', methods=['GET','POST'])
+def short_stolen_laptop():
+  if request.method == "GET":
+    return render_template('short_stolen_laptop.html')
+  if request.method == "POST":
+    return logic.short_stolen_laptop(request.form)
 
 @vcdb.route('/theft_physical', methods=['GET','POST'])
 def theft_physical():
@@ -48,10 +52,7 @@ def theft_physical():
     incident['timeline'] = short_timeline_object(request.form)
     
     incident = json.dumps(incident,indent=2, sort_keys=True, separators=(',', ': '))
-    incident = incident.replace(' ', '&nbsp;')
-    incident = incident.replace('\n', '<br />')
-
-    return incident
+    return make_pretty(incident)
 
 @vcdb.route('/tampering_physical')
 def tampering_physical():
