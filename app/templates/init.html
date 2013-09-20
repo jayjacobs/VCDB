@@ -26,10 +26,19 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-      <div class="container">
-        {% block formnav %} put a navigation form here {% endblock %}
-        {% block content %}{% endblock %}
-      </div>
+      {% block responsive_container %}
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+              <ul class="nav form-navigation">
+                {% block form_nav_links %}
+                <li><a href="/">Home</a></li>
+                {% endblock %}
+              </ul>
+            </div><!-- end of col-md-3 -->
+      {% endblock %}
+            
+      {% block content %}{% endblock %}
 
       <hr>
 
