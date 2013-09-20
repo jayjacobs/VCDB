@@ -36,9 +36,16 @@
                 {% endblock %}
               </ul>
             </div><!-- end of col-md-3 -->
+            <div class="col-md-9">
       {% endblock %}
             
       {% block content %}{% endblock %}
+       
+      {% block responsive_bottom %}
+            </div><!-- end of col-md-9 -->
+          </div><!-- end of row -->
+        </div><!-- end of container -->
+      {% endblock %}
 
       <hr>
 
