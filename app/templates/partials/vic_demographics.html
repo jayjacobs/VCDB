@@ -1,42 +1,18 @@
 <h2 id="vic-demographics">Victim Demographics</h2>
-<p>This section describes (but does not identify) the organization affected by the incident. The primary purpose is to aid comparisons between different types of organizations (across industries, sizes, regions, etc) or departments within a single organization.</p>
+<p>This section describes the organizations affected by the incident. The primary purpose is to aid comparisons between different types of organizations (across industries, sizes, regions, etc) or departments within a single organization.</p>
 <div id="victim_array">
-    <div class="indented-fields pull-right">
-        <div class="form-group">
-            <label>Victim ID</label>
-            <input name="1_victim_id" class="form-control" placeholder="Proper name for the victim organization" required>
-        </div>
-        <div class="form-group">
-            <label>Number of Employees</label>
-            <select name="1_employee_count" class="form-control" required>
-                <option value="" disabled selected>-- Please select --</option>
-                <option value="1 to 10">1 to 10</option>
-                <option value="11 to 100">11 to 100</option>
-                <option value="101 to 1000">101 to 1,000</option>
-                <option value="Small">Small (less than 1000 employees)</option>
-                <option value="Large">Large (1,000 employees or more)</option>
-                <option value="1001 to 10000">1,001 to 10,000</option>
-                <option value="10001 to 25000">10,001 to 25,000</option>
-                <option value="25001 to 50000">25,001 to 50,000</option>
-                <option value="50001 to 100000">50,001 to 100,000</option>
-                <option value="Over 100000">Over 100,000</option> 
-                <option value="Unknown">Unknown</option>
-            </select>
-        </div>
-        <label>Annual Revenue</label>
-        <div class="input-group">
-            <input type="number" name="1_revenue" class="form-control">
-            <span class="input-group-addon">
-                <select name="iso_currency_code">
-                    <option value="USD" selected>USD</option>
-                    {% include 'partials/iso_currency_codes.html' %}
-                </select>
-            </span>
-        </div>
+  <div class="form-group">
+    <label>Victim ID</label>
+    <input name="1_victim_id" class="form-control" placeholder="Proper name for the victim organization" required>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
         <div class="form-group">
             <label>Primary Industry</label>
             <input type="number" name="1_industry" placeholder="6 digit NAICS code" class="form-control">
         </div>
+    </div>
+       <div class="col-md-4">
         <div class="form-group">
             <label>Country of Operation</label>
             <select name="1_country" class="form-control" required>
@@ -50,18 +26,89 @@
                 </optgroup>
             </select>
         </div>
-        <div class="form-group">
-            <label>State/Region</label>
-            <input type="text" class="form-control" name="1_state">
+    </div>
+        <div class="col-md-4">
+          <div class="form-group">
+              <label>State/Region</label>
+              <input type="text" class="form-control" name="1_state">
+          </div>
         </div>
-        <div class="form-group">
+    </div><!-- end of row -->
+  <span class="glyphicon glyphicon-chevron-right"></span><label> More info</label>
+    <div id="primary_victim_more_info">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Number of Employees</label>
+            <select name="1_employee_count" class="form-control" required>
+              <option value="Unknown" selected>Unknown</option>
+              <option value="1 to 10">1 to 10</option>
+              <option value="11 to 100">11 to 100</option>
+              <option value="101 to 1000">101 to 1,000</option>
+              <option value="Small">Small (less than 1000 employees)</option>
+              <option value="Large">Large (1,000 employees or more)</option>
+              <option value="1001 to 10000">1,001 to 10,000</option>
+              <option value="10001 to 25000">10,001 to 25,000</option>
+              <option value="25001 to 50000">25,001 to 50,000</option>
+              <option value="50001 to 100000">50,001 to 100,000</option>
+              <option value="Over 100000">Over 100,000</option> 
+            </select>
+          </div>
+        </div> 
+        <div class="col-md-4">
+          <label>Annual Revenue</label>
+          <div class="input-group">
+            <input type="number" name="1_revenue" class="form-control">
+            <span class="input-group-addon">
+              <select name="iso_currency_code">
+                <option value="USD" selected>USD</option>
+                {% include 'partials/iso_currency_codes.html' %}
+              </select>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
             <label>Number of Locations Affected</label>
             <input type="number" name="1_locations_affected" class="form-control">
+          </div>
         </div>
+      </div><!-- end of row -->
+      <div class="form-group">
+        <label>Victim Notes</label>
+        <textarea name="1_victim_notes" class="form-control"></textarea>
+      </div>
+  </div><!-- end of primary_victim_more_info -->
+  <span class="glyphicon glyphicon-chevron-right"></span><label> Secondary victims</label>
+  <div id="secondary_victim_info">
+    <div class="row">
+      <div class="col-md-6">
         <div class="form-group">
-            <label>Victim Notes</label>
-            <textarea name="1_victim_notes" class="form-control"></textarea>
+          <label>Number of secondary victims</label>
+          <input name="secondary_victim_count" type="number" class="form-control">
         </div>
-    </div> <!-- end of single victim demographics -->
-</div> <!-- end of victim_array -->
-<button id="btn_add_victim" class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-plus"></span> Add Another Victim</button>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Delimiter</label>
+          <select name="secondary_victim_delim" class="form-control">
+            <option value="\n" selected>Newline</option>
+            <option value=",">Comma</option>
+            <option value=";">Semicolon</option>
+          </select>
+        </div>
+      </div>
+    </div>
+      
+    <div class="form-group">
+      <label>Known Victim IDs</label>
+      <textarea name="secondary_victim_ids" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Secondary Victim Notes</label>
+      <textarea name="secondary_victim_notes" class="form-control"></textarea>
+    </div>
+  </div><!-- end of secondary_victim_more_info -->
+</div><!-- end of victim array -->
+
