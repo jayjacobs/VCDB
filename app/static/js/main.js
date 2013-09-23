@@ -55,3 +55,15 @@ $('#btn-add-data-variety').click( function() {
   $("#data-variety-array").append(newRow);
   $(data_variety_count+"_data_variety").focus();
 });
+
+$('#show_secondary_victim').click( function() {
+  $('#secondary_victim_info').toggleClass("hidden");
+  $('#second_vic').toggleClass("glyphicon-chevron-right").toggleClass("glyphicon-chevron-down");
+  return false;
+});
+
+$('#show_victim_more_info').click( function() {
+  $('#primary_victim_more_info').toggleClass("hidden");
+  $('#vic_more').toggleClass("glyphicon-chevron-right").toggleClass("glyphicon-chevron-down");
+  return false;
+});
