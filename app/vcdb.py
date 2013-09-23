@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+from datetime import datetime
 import json,uuid,logic
 vcdb = Flask(__name__)
 
@@ -29,7 +30,10 @@ def index():
 @vcdb.route('/short_stolen_laptop', methods=['GET','POST'])
 def short_stolen_laptop():
   if request.method == "GET":
-    return render_template('short_stolen_laptop.html')
+    return render_template('short_stolen_laptop.html',
+                           current_year = datetime.now().strftime('%Y'),
+                           current_month = datetime.now().strftime('%m'),
+                           current_day = datetime.now().strftime('%d'))
   if request.method == "POST":
     return logic.short_stolen_laptop(request.form)
 

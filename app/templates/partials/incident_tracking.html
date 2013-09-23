@@ -20,7 +20,7 @@
   <div class="col-md-4">
     <div class="form-group">
       <label>Year</label>
-      <input name="compromise_year" type="number" class="form-control" required>
+      <input name="compromise_year" type="number" value="{{ current_year }}" class="form-control" required>
     </div>
   </div>
   <div class="col-md-4">
@@ -42,7 +42,7 @@
   <div class="col-md-4">
     <div class="form-group">
       <label>Year</label>
-      <input name="discovery_year" type="number" class="form-control" required>
+      <input name="discovery_year" type="number" value="{{ current_year }}" class="form-control" required>
     </div>
   </div>
   <div class="col-md-4">
@@ -64,7 +64,7 @@
   <div class="col-md-4">
     <div class="form-group">
       <label>Year</label>
-      <input name="disclosure_year" type="number" class="form-control" required>
+      <input name="disclosure_year" type="number" value="{{ current_year }}" class="form-control" required>
     </div>
   </div>
   <div class="col-md-4">
@@ -94,7 +94,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label>Date Retrieved</label>
-                <input name="1_source_retrieved" type="date" class="form-control">
+              <input name="1_source_retrieved" type="date" value="{{ current_year }}{{ current_month }}{{ current_day }}" class="form-control">
             </div>
         </div>
     </div>
