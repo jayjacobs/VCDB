@@ -4,7 +4,7 @@ import json
 
 def short_stolen_laptop(i):
   incident_guid = str(uuid.uuid4()).upper()
-  o = {'schema_version':'1.2',
+  o = {'schema_version':'1.2.1',
        'action': {'physical' : {'variety' : ['Theft'] } },
        'actor' : {'external' : {'motive' : ['Financial'] } },
        'asset' : {'assets' : [{'variety': 'U - Laptop'}],
@@ -26,8 +26,44 @@ def short_stolen_laptop(i):
   o['timeline'] = get_incident_timeline(i)
   o['plus']['timeline'] = get_notification_date(i)
   o['reference'] = get_source_string(i)
+  o['victim'] = get_victim(i)
       
   return make_pretty(o)
+
+def get_victim(i):
+  o = {}
+  secondary = {}
+  for key in ['victim_id','country','employee_count','state']:
+    if key in i.keys() and i[key] != '':
+      o[key] = i[key]
+  if 'revenue' in i.keys() and i['revenue'] != '':
+    if 'iso_currency_code' in i.keys() and i['iso_currency_code'] != '':
+      o['revenue'] = {'amount': int(i['revenue']),'iso_currency_code':i['iso_currency_code']}
+  if 'industry' in i.keys() and i['industry'] != '':
+    o['industry'] = int(i['industry'])
+  if 'victim_notes' in i.keys() and i['victim_notes'] != '':
+    o['notes'] = i['victim_notes']
+  
+  if "secondary_victim_count" in i.keys() and i["secondary_victim_count"] != '':
+    try:
+      secondary['amount'] = int(i["secondary_victim_count"])
+    except:
+      next
+  if "secondary_victim_ids" in i.keys() and i["secondary_victim_ids"] != '':
+    if "secondary_victim_delim" in i.keys() and i["secondary_victim_delim"] != '':
+      try:
+        if i['secondary_victim_delim'] == 'newline':
+          secondary['victim_id'] = i['secondary_victim_ids'].splitlines()
+        else:
+          secondary['victim_id'] = i['secondary_victim_ids'].split(i['secondary_victim_delim'])
+      except:
+        next
+  if "secondary_victim_notes" in i.keys() and i["secondary_victim_notes"] != '':
+    secondary['notes'] = i["secondary_victim_notes"]
+  
+  if len(secondary.keys()) > 0:
+    o['secondary'] = secondary
+  return o
 
 def get_incident_timeline(i):
   o = {'incident' : {'year' : int(i['compromise_year']) }}
