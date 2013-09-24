@@ -5,7 +5,7 @@ import json
 def short_stolen_laptop(i):
   incident_guid = str(uuid.uuid4()).upper()
   o = {'schema_version':'1.2.1',
-       'action': {'physical' : {'variety' : ['Theft'] } },
+       'action': {'physical' : {'variety' : ['Theft'], 'vector' : ['Disabled controls'] } },
        'actor' : {'external' : {'motive' : ['Financial'] } },
        'asset' : {'assets' : [{'variety': 'U - Laptop'}],
                   'ownership' : 'Victim'},
@@ -22,7 +22,9 @@ def short_stolen_laptop(i):
   for key in ['summary','security_incident','notes','discovery_method']:
     if i[key] != '':
       o[key] = i[key]
-  
+  o['actor']['external']['variety'] = [i['actor_variety'].split('_')[1]]
+  o['actor']['external']['country'] = [i['country']]
+  o['action']['physical']['location'] = [i['location']]
   o['timeline'] = get_incident_timeline(i)
   o['plus']['timeline'] = get_notification_date(i)
   o['reference'] = get_source_string(i)
@@ -40,7 +42,7 @@ def get_victim(i):
     if 'iso_currency_code' in i.keys() and i['iso_currency_code'] != '':
       o['revenue'] = {'amount': int(i['revenue']),'iso_currency_code':i['iso_currency_code']}
   if 'industry' in i.keys() and i['industry'] != '':
-    o['industry'] = int(i['industry'])
+    o['industry'] = i['industry']
   if 'victim_notes' in i.keys() and i['victim_notes'] != '':
     o['notes'] = i['victim_notes']
   

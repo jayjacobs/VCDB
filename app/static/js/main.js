@@ -1,6 +1,18 @@
 source_count = 1;
 data_variety_count = 1;
 
+var padDate = function() {
+  d = new Date();
+  
+  padding = "00";
+  returnstring = d.getFullYear().toString();
+  month = (d.getMonth()+1).toString();
+  day = (d.getDate().toString());
+  returnstring += (padding + month).slice(-padding.length);
+  returnstring += (padding + day).slice(-padding.length);
+  return returnstring;
+}
+
 $('#btn-add-source').click( function() {
     source_count += 1;
     newRow = $("<div></div>").addClass("row");
@@ -14,7 +26,7 @@ $('#btn-add-source').click( function() {
     newCol = $("<div></div>").addClass("col-md-4");
     newFields = $("<div></div>").addClass("form-controls");
     newFields.append("<label>Date Retrieved</label>");
-    newFields.append($("<input>").attr({name:source_count+"_source_retrieved"}).addClass("form-control"));
+    newFields.append($("<input>").attr({name:source_count+"_source_retrieved",value:padDate()}).addClass("form-control"));
     newCol.append(newFields);
     newRow.append(newCol);
     $("#source-material").append(newRow);
