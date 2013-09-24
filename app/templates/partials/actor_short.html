@@ -1,6 +1,8 @@
 {#  This is a list of actor varieties for both internal and external actors.
     The template that includes this should declare an array named exclude_actors.
     The elements of that array will be excluded from the select options.
+    The template may include a string named default_actor which will make that
+    option selected when the form is rendered.
 #}
 
 
@@ -38,10 +40,16 @@
 <div class="form-group">
     <label>Actor</label>
     <select name="actor_variety" required class="form-control">
-        <option value="" selected disabled>-- Please Select --</option>
+        {% if not default_actor %}
+            <option value="" selected disabled>-- Please Select --</option>
+        {% endif %}
         {% for key,value in actorlist.items()|sort %}
             {% if key not in exclude_actors %}
+              {% if key == default_actor %}
+                <option value="{{key}}" selected>{{value}}</option>
+              {% else %}
                 <option value="{{key}}">{{value}}</option>
+              {% endif %}
             {% endif %}
         {% endfor %}
     </select>
